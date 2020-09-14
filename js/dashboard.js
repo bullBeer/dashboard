@@ -122,7 +122,7 @@ var dashboard = function(options) {
 
   // 绘制指针
   function drawPointer(angle) {
-    var scale = options.pointer.scale * dpr
+    var scale = Math.min(options.pointer.scale, 1) * dpr
     var deg = -((angle + (360 - endAngle) / 2) * Math.PI / 180)
     ctx.save()
     ctx.translate(x + (prr - img.naturalWidth * scale / 2) * Math.sin(deg), y + (prr - img.naturalHeight * scale / 2) * Math.cos(deg))
