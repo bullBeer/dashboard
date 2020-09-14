@@ -28,6 +28,11 @@
     var sAmount = document.querySelector('.amount-sm')
     dashboard({
       el: '#dashboard',
+      // 指针图配置
+      pointer: {
+        src: './img/pointer.png',
+        scale: 0.1 // 缩放: 0 - 1
+      },
       maxValue: 600, // 最大值
       currentValue: 400.25, // 当前值
       width: 500,
