@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仪表盘</title>
+</head>
+<body>
+  <div class="dashboard-container">
+    <canvas id="dashboard"></canvas>
+    <div class="info">
+      <p class="amount-item">
+        <span class="symbol">￥</span>
+        <span class="amount-value">
+          <span class="amount">0</span><span class="dot">.</span><span class="amount-sm">00</span>
+        </span>
+      </p>
+      <p class="info-item">2020年总额度：30000</p>
+    </div>
+    
+  </div>
+
+  <script src="js/dashboard.js"></script>
+
+  <script>
+    // 示例
+    var amount = document.querySelector('.amount')
+    var sAmount = document.querySelector('.amount-sm')
+    dashboard({
+      el: '#dashboard',
+      maxValue: 600, // 最大值
+      currentValue: 400.25, // 当前值
+      width: 500,
+      height: 500,
+      color: '#ffffff',
+      duration: 300, // 动画时长
+      // 动画开始，每帧触发此回调
+      update(val) {
+        amount.innerHTML = val.split('.')[0]
+        sAmount.innerHTML = val.split('.')[1]
+      }
+    })
+  </script>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .dashboard-container{
+      background-color: #D4512B;
+      position: relative;
+      height: 500px;
+      text-align: center;
+      overflow: hidden;
+    }
+    #dashboard{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -40%);
+      width: 500px;
+      height: 500px;
+    }
+    .info{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, 0);
+    }
+    .amount-item{
+      color: #fff;
+      font-size: 0;
+    }
+    
+    .amount,.amount-sm,.dot,.symbol{
+      font-size: 30px;
+      display: inline-block;
+      vertical-align: sub;
+    }
+    .amount{
+      font-size: 60px;
+    }
+    .amount{
+      width: 115px;
+    }
+    .amount-sm{
+      width: 40px;
+    }
+    .info-item{
+      color: rgba(255,255,255,0.8);
+      font-size: 20px;
+    }
+  </style>
+</body>
+</html>
