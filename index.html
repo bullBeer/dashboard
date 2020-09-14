@@ -4,48 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>仪表盘</title>
-</head>
-<body>
-  <div class="dashboard-container">
-    <canvas id="dashboard"></canvas>
-    <div class="info">
-      <p class="amount-item">
-        <span class="symbol">￥</span>
-        <span class="amount-value">
-          <span class="amount">0</span><span class="dot">.</span><span class="amount-sm">00</span>
-        </span>
-      </p>
-      <p class="info-item">2020年总额度：30000</p>
-    </div>
-    
-  </div>
-
-  <script src="js/dashboard.js"></script>
-
-  <script>
-    // 示例
-    var amount = document.querySelector('.amount')
-    var sAmount = document.querySelector('.amount-sm')
-    dashboard({
-      el: '#dashboard',
-      // 指针图配置
-      pointer: {
-        src: './img/pointer.png',
-        scale: 0.1 // 缩放: 0 - 1
-      },
-      maxValue: 600, // 最大值
-      currentValue: 400.25, // 当前值
-      width: 500,
-      height: 500,
-      color: '#ffffff',
-      duration: 300, // 动画时长
-      // 动画开始，每帧触发此回调
-      update(val) {
-        amount.innerHTML = val.split('.')[0]
-        sAmount.innerHTML = val.split('.')[1]
-      }
-    })
-  </script>
   <style>
     *{
       padding: 0;
@@ -96,5 +54,50 @@
       font-size: 20px;
     }
   </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <canvas id="dashboard"></canvas>
+    <div class="info">
+      <p class="amount-item">
+        <span class="symbol">￥</span>
+        <span class="amount-value">
+          <span class="amount">0</span><span class="dot">.</span><span class="amount-sm">00</span>
+        </span>
+      </p>
+      <p class="info-item">2020年总额度：30000</p>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+
+  <script>
+    // 示例
+    var amount = document.querySelector('.amount')
+    var sAmount = document.querySelector('.amount-sm')
+
+    var amount2 = document.querySelector('.amount2')
+    var sAmount2 = document.querySelector('.amount-sm2')
+    Dashboard.create({
+      el: '#dashboard',
+      // 指针图配置
+      pointer: {
+        src: './img/pointer.png',
+        scale: 0.1 // 缩放: 0 - 1
+      },
+      maxValue: 600, // 最大值
+      currentValue: 400.25, // 当前值
+      width: 500,
+      height: 500,
+      color: '#ffffff',
+      duration: 300, // 动画时长
+      // 动画开始，每帧触发此回调
+      update(val) {
+        amount.innerHTML = val.split('.')[0]
+        sAmount.innerHTML = val.split('.')[1]
+      }
+    })
+  </script>
+  
 </body>
 </html>
