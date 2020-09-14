@@ -2,8 +2,10 @@ var dashboard = function(options) {
   var doc = document
   var canvas = doc.querySelector(options.el)
   var ctx = canvas.getContext("2d")
-  var width = options.width
-  var height = options.height
+  var dpi = window.devicePixelRatio || 1
+  var width = options.width * dpi
+  var height = options.height * dpi
+  // 设置dpi分辨率 (移动设备缩放不模糊)
   canvas.setAttribute('width', width)
   canvas.setAttribute('height', height)
   
@@ -14,11 +16,11 @@ var dashboard = function(options) {
   // 半径
   var r = width / 2 * 0.95
   // 线条宽度
-  var lineWidth = 8
+  var lineWidth = 8 * dpi
   ctx.lineWidth = lineWidth
 
   // 结束角度
-  const endAngle = 220
+  var endAngle = 220
 
   // 指示球半径
   var br = lineWidth * 1.3
@@ -79,7 +81,7 @@ var dashboard = function(options) {
     ctx.strokeStyle = options.color
     ctx.globalAlpha = opacity || 1
     ctx.beginPath()
-    ctx.arc(0, 0, (width * 0.95 - 10) / 2, 160 * Math.PI / 180, (angle + 160) * Math.PI / 180, false)
+    ctx.arc(0, 0, (width * 0.95 - 10 * dpi) / 2, 160 * Math.PI / 180, (angle + 160) * Math.PI / 180, false)
     ctx.stroke()
     ctx.restore()
   }
@@ -92,7 +94,7 @@ var dashboard = function(options) {
 
   // 绘制刻度
   function drawCalibration(opacity, total, angle) {
-    var w = 10
+    var w = 10 * dpi
     for(var i = 0; i < total; i++) {
       var deg = ((angle * i - (360 - endAngle - angle) / 2) * Math.PI / 180)
       ctx.save()
